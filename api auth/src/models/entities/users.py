@@ -28,7 +28,12 @@ class User(Base):
         session = Session()
         return session
 
-# users = session.query(User.id, User.email).filter(User.email == 'jose@gmail.com')
+
+
+session = User.session_orm()
+a = session.query(User.id, User.email, User.password).filter(User.email == 'jose@gmail.com')
+for user in a:
+    print(user)
 # Base.metadata.drop_all(engine)
 # Base.metadata.create_all(engine)
 
