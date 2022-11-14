@@ -10,7 +10,7 @@ def expire_date(days: int):
     return new_date
 
 
-def write_toke(data: dict):
+def write_token(data: dict):
     token = encode(payload={**data, 'exp': expire_date(7)}, key=config('SIGN_JWT'), algorithm='HS256')
     return token.encode('UTF-8')
 

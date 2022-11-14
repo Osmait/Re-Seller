@@ -1,0 +1,5 @@
+flask
+pyjwt
+python-decouple
+sqlalchemy
+psycopg2

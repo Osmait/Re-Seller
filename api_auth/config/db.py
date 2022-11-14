@@ -1,4 +1,5 @@
-from sqlalchemy import sessionmaker
+from sqlalchemy.orm import sessionmaker
+from models.entities.users import User
 from sqlalchemy import create_engine
 from decouple import config
 
