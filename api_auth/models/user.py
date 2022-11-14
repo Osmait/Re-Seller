@@ -1,5 +1,6 @@
-from models.entities.users import User, ModelsUsers, check_password_hash
+from models.entities.users import User, ModelsUsers
 from config.db import session
+from werkzeug.security import check_password_hash
 
 
 class ModelUser:
