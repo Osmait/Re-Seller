@@ -30,7 +30,11 @@ export class User {
   }
   public async findAll(_req: Request, res: Response) {
     try {
-      const data = await prisma.user.findMany({ include: { cart: true } });
+      const data = await prisma.user.findMany({
+        include: {
+          cart: { include: { order: { include: { Product: true } } } },
+        },
+      });
       res.status(202).json({
         data,
       });

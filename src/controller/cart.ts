@@ -5,23 +5,36 @@ const prisma = new PrismaClient();
 
 export class Cart {
   async create(req: Request, res: Response) {
-    const { userId, product_id, cant } = req.body;
+    const { userId } = req.body;
 
     const data = await prisma.cart.create({
       data: {
         userId: parseInt(userId),
-        product_id: product_id,
-        cant,
       },
     });
     res.json({ data });
   }
 
-  async findCart(req: Request, res: Response) {
-    const { id } = req.params;
-    const data = await prisma.cart.findMany({
-      where: { userId: parseInt(id) },
+  async createOrder(req: Request, res: Response) {
+    const { productId, cartId, cant } = req.body;
+    const data = await prisma.order.create({
+      data: {
+        cartId: parseInt(cartId),
+        productId: parseInt(productId),
+        cant: cant,
+      },
     });
+
+    res.status(200).json({
+      data,
+    });
+  }
+
+  async findCart(_req: Request, res: Response) {
+    const data = await prisma.cart.findMany({
+      include: { order: { include: { Product: true } } },
+    });
+
     res.status(200).json({
       data,
     });
