@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Cart" ADD COLUMN     "cant" INTEGER NOT NULL DEFAULT 1;
